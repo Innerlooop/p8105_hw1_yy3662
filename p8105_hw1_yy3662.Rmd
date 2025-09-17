@@ -1,0 +1,35 @@
+---
+title: "p8105_hw1_yy3662"
+author: "Yunyi Yang"
+date: "2025-09-17"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Problem 1
+
+```{r}
+library(tidyverse)
+library(moderndive)
+library(skimr)
+data("early_january_weather")
+skimr::skim(early_january_weather)
+
+```
+
+Thsi data set includes `origin`, which means waether station, `year` `month` `day` `hour` means time of recording, `temp` `dewp` means temperature and dewpoint in F, `humid` means relative humidity, `wind_dir` `wind_speed` `wind_gust` means wind direction (in degrees)m speed and gust speed (in mph), `precip` means precipitation, in inches, `pressure` means sea level pressure in millibars, `visib` means visibility in miles, `time_hour` means date and hour of the recording as a POSIXct date.
+
+The data is 358*15.
+
+The mean temperature is 39.58212 based on mean(early_january_weather$temp).
+
+```{r}
+library(ggplot2)
+ggplot(data = early_january_weather, aes(x = time_hour, y = temp, color = humid)) + geom_point()
+ggsave("plot.png")
+```
+
+This plot has obvious rise and fall as the changing of time. At the same time, the higher humid level always happens in increasing process.
