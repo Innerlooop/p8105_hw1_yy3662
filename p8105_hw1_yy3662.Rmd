@@ -33,3 +33,28 @@ ggsave("plot.png")
 ```
 
 This plot has obvious rise and fall as the changing of time. At the same time, the higher humid level always happens in increasing process.
+
+## Problem 2
+
+```{r}
+col1 <- rnorm(10)
+col2 <- as.logical(col1 > 0)
+col3 <- c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j")
+col4 <- factor(c("1", "2", "3", "3", "2", "1", "1", "2", "3", "3"))
+dataframe <- tibble(
+  col1,
+  col2,
+  col3,
+  col4
+)
+dataframe
+mean(pull(dataframe, 1))
+mean(pull(dataframe, 2))
+mean(pull(dataframe, 3))
+mean(pull(dataframe, 4))
+newcol2 <- as.numeric(col2)
+newcol3 <- as.numeric(col3)
+newcol4 <- as.numeric(col4)
+```
+For mean, it works for samples from N(0,1) and logical variable, and it doesn't work for character vectors and factor vectors.
+After I doing as.numeric, these three columns become numeric data, and the values of character vectors become NA in new numeric data because character vectors could contain letters and other format of data, not only including numeric numbers, so it doesn't make sense to convert character vector to numeric data. It is helpful for explaining the NA outcome when I do the mean for character vector because the informations that the character vector contain is not reasonable for mean function.
